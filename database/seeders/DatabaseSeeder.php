@@ -16,31 +16,39 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
 
-        $user = User::create([
-            'name'=> 'md rakibul hassan rony',
-            'email'=> 'rakibulhassan.rony123@gmail.com',
-            'address'=> 'Banani BTCL Colony',
-            'status'=> 'A'
-        ]);
 
-        $user->phone()->create([
-            'country_code'=> '880',
-            'phone'=>'01558955553'
-        ]);
+        $user = User::create(
+            [
+                'name'=> 'Rakib',
+                'email'=> 'rakib@gmail.com',
+                'address'=> 'Banani BTCL Colony',
+                'status'=> 'A'
+            ]);
 
-        $user->credintial()->create([
-            'user_name'=>'rony',
-            'password'=>Hash::make('123456'),
-        ]);
+        $user->phone()->create(
+            [
+                'country_code'=> '880',
+                'phone'=>'0164',
+            ]);
 
-        $role = Role::create([
-            'name' => 'ROLE_ADMIN',
-            'status'=> 'A',
-        ]);
+        $user->credintial()->create(
+            [
+                    'user_name'=>'rakib',
+                    'password'=>Hash::make('123456'),
+            ]);
 
-        $user->roles()->sync([$role->id]);
+//        $role = Role::create(
+//            [
+//                    'name' => 'ROLE_EDITOR',
+//                    'status'=> 'A',
+//            ]
+//        );
+
+//        $user = User::find(2);
+        $role = Role::find(2);
+
+        $user->roles()->attach([$role->id]);
 
     }
 }
