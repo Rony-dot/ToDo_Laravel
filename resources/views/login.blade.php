@@ -15,14 +15,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
+
+<x-alert/>
 <div class="  min-h-screen flex justify-center items-center">
             <form class=" shadow rounded  w-1/3 " action="{{ route('login') }}" method="post">
                 @csrf
                 <div class=" w-full flex justifycenter">
                     <h3>Login</h3>
                 </div>
-                <label for="name">User name/E-mail:</label> <br>
-                <input type="text" name="name"> <br>
+                <label for="username">User name/E-mail:</label> <br>
+                <input type="text" name="username"> <br>
                 <label for="password"></label> <br>
                 <input type="password" name="password"> <br>
                 <button type="submit" class="btn">Login</button>

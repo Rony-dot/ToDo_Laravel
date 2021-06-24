@@ -4,11 +4,9 @@ namespace App\Http\Middleware;
 
 use App\Models\User;
 use Closure;
-
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
-class UserAuthMiddleware
+class UserRoleMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,13 +15,12 @@ class UserAuthMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next, $role)
     {
-
-
-        if(!Session::has('user_id')){
-            return redirect()->route('login.page');
+        $user = User::find($request->session()->get('user_id'));
+        if($user->roles()->where('name',$role)->first()){
+            return $next($request);
         }
-        return $next($request);
+        return redirect()-back();
     }
 }

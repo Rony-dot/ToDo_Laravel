@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+
+//    public function __construct()
+//    {
+//        $this->middleware('user.auth');
+//    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +19,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //
+        $this->middleware('user.auth');
+        return view('home')->with('msg','successful login');
     }
 
     /**

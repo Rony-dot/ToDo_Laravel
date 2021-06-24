@@ -2,7 +2,7 @@
 @section('content')
     <div class="container center">
         <p>this is update page</p>
-        <form method="post" action="{{ route('todo.updates', $todo->id) }}">
+        <form method="post" action="{{ route('todo.update', $todo->id) }}">
             @method('patch')
             @csrf
             <x-alert/>

@@ -22,12 +22,20 @@
     <div class="nav-wrapper">
         <a href="#" class="brand-logo right">{{env('APP_NAME')}}</a>
         <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><a href="{{ route('home') }}">Home</a></li>
+            <li><a href="{{ route('home.index') }}">Home</a></li>
             <li><a href="{{ route('about') }}">About</a></li>
-            <li><a href="{{ route('todo.index')}}">Todo</a></li>
+            @if(\App\Models\User::find(session()->get('user_id'))->roles()->where('name','ROLE_USER'))
+                <li><a href="{{ route('todo.index')}}">Todo</a></li>
+            @endif
+
         </ul>
     </div>
 </nav>
+@if(\App\Models\User::find(session()->get('user_id')))
+<h1> hello mr. {{ \App\Models\User::find(session()->get('user_id'))->name }}</h1>
+@else
+<h1> you are a guest</h1>
+@endif
 
 
 @yield('content')
